@@ -1,4 +1,10 @@
-const Login = () => {
-  return <div>Login</div>;
+import { AiFillLock } from "react-icons/ai";
+
+const Login = ({ allowed }) => {
+  return (
+    <div>
+      <AiFillLock />
+    </div>
+  );
 };
 export default Login;
