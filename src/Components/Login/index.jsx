@@ -45,6 +45,7 @@ const Login = ({ allowed, setAllowed }) => {
         toast.error("Digite um usuário ou senha válida!");
       });
   };
+
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("@ken:token"));
     if (token) {
