@@ -1,9 +1,21 @@
 import Button from "../Button";
 import { AiFillHome } from "react-icons/ai";
 import { useHistory } from "react-router";
+import { useEffect } from "react";
+import { Redirect } from "react-router";
 
-const Home = ({ allowed }) => {
+const Home = ({ allowed, setAllowed }) => {
   const history = useHistory();
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("@ken:token"));
+    if (token) {
+      return setAllowed(true);
+    }
+  }, [allowed]);
+
+  if (allowed) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
     <div>
       <h1>

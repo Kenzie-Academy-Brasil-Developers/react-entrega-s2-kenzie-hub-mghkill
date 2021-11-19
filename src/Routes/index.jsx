@@ -11,16 +11,16 @@ const Routes = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <Home allowed={allowed} />
+        <Home allowed={allowed} setAllowed={setAllowed} />
       </Route>
       <Route exact path="/login">
-        <Login allowed={allowed} />
+        <Login allowed={allowed} setAllowed={setAllowed} />
       </Route>
       <Route exact path="/singup">
-        <SingUp allowed={allowed} />
+        <SingUp allowed={allowed} setAllowed={setAllowed} />
       </Route>
       <Route exact path="/dashboard">
-        <Dashboard allowed={allowed} />
+        <Dashboard allowed={allowed} setAllowed={setAllowed} />
       </Route>
     </Switch>
   );

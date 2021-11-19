@@ -4,10 +4,13 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Redirect, useHistory } from "react-router";
+import { useEffect } from "react";
 import api from "../../Services";
-import { toast } from "react-toastify";
-const SingUp = ({ allowed }) => {
+import { toast } from "react-hot-toast";
+
+const SingUp = ({ allowed, setAllowed }) => {
   const history = useHistory();
+
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -27,6 +30,7 @@ const SingUp = ({ allowed }) => {
     contact: yup.string().required("Campo obrigatório"),
     course_module: yup.string().required("Campo obrigatório"),
   });
+
   const {
     register,
     handleSubmit,
@@ -44,14 +48,22 @@ const SingUp = ({ allowed }) => {
       contact: data.contact,
       course_module: data.course_module,
     };
-
     api
       .post("/users", dataValue)
       .then((response) => {
-        return history.push("/login");
+        toast.success("Cadastro realizado com sucesso!");
+        history.push("/login");
       })
-      .catch((err) => console.log("Mensagem de erro"));
+      .catch((err) =>
+        toast.error("E-mail já cadastrado. Tente outro entereço!")
+      );
   };
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("@ken:token"));
+    if (token) {
+      return setAllowed(true);
+    }
+  }, [allowed]);
 
   if (allowed) {
     return <Redirect to="/dashboard" />;
@@ -65,11 +77,17 @@ const SingUp = ({ allowed }) => {
         <span>{errors.name?.message}</span>
         <Input registers={register} value="name" placeholder="Nome" />
         <span>{errors.password?.message}</span>
-        <Input registers={register} value="password" placeholder="Senha" />
+        <Input
+          registers={register}
+          value="password"
+          type="password"
+          placeholder="Senha"
+        />
         <span>{errors.password_confirm?.message}</span>
         <Input
           registers={register}
           value="password_confirm"
+          type="password"
           placeholder="Confirme sua senha"
         />
         <span>{errors.bio?.message}</span>
