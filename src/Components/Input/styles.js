@@ -1,0 +1,29 @@
+import styled from "styled-components";
+
+export const Conteiner = styled.div`
+  width: 100%;
+  height: 46px;
+  margin: 8px auto;
+  border-radius: 28px;
+  border: solid 1px #e7e7e7;
+  input {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    padding: 18px;
+    border: #e7e7e7 solid 1px;
+    border-radius: 28px;
+    background-color: #e7e7e7;
+    :focus {
+      box-shadow: 0 0 0 0;
+      border: 0 none;
+      outline: 0;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px #e7e7e7 inset !important;
+    }
+  }
+`;

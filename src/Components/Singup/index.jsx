@@ -7,6 +7,8 @@ import { Redirect, useHistory } from "react-router";
 import { useEffect } from "react";
 import api from "../../Services";
 import { toast } from "react-hot-toast";
+import { Conteiner } from "./styles";
+import { FaUserAlt } from "react-icons/fa";
 
 const SingUp = ({ allowed, setAllowed }) => {
   const history = useHistory();
@@ -16,7 +18,10 @@ const SingUp = ({ allowed, setAllowed }) => {
       .string()
       .required("Campo obrigatório")
       .email("Não é um E-mail válido"),
-    password: yup.string().required("Campo obrigatório"),
+    password: yup
+      .string()
+      .required("Campo obrigatório")
+      .min(6, "Mínimo de 6 dígitos"),
     // .matches(
     //   /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
     //   "Maiúsculas, minúsculas, especiais %$#@%, 8 caracters +"
@@ -70,7 +75,9 @@ const SingUp = ({ allowed, setAllowed }) => {
   }
 
   return (
-    <div>
+    <Conteiner>
+      <h1>Cadastro</h1>
+      <FaUserAlt />
       <form onSubmit={handleSubmit(handleRegister)}>
         <span>{errors.email?.message}</span>
         <Input registers={register} value="email" placeholder="E-mail" />
@@ -110,7 +117,7 @@ const SingUp = ({ allowed, setAllowed }) => {
         />
         <Button type="submit">Cadastrar</Button>
       </form>
-    </div>
+    </Conteiner>
   );
 };
 export default SingUp;

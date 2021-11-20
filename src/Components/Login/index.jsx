@@ -9,6 +9,7 @@ import api from "../../Services";
 import { toast } from "react-hot-toast";
 import { useEffect } from "react";
 import AddButton from "../AddButton";
+import { Conteiner } from "./styles";
 
 const Login = ({ allowed, setAllowed }) => {
   const schema = yup.object().shape({
@@ -56,7 +57,7 @@ const Login = ({ allowed, setAllowed }) => {
   }
 
   return (
-    <div>
+    <Conteiner>
       <h1>Login</h1>
       <AiFillLock />
       <form onSubmit={handleSubmit(handleRegister)}>
@@ -69,7 +70,7 @@ const Login = ({ allowed, setAllowed }) => {
         />
         <Button type="submit">Enviar</Button>
       </form>
-    </div>
+    </Conteiner>
   );
 };
 export default Login;

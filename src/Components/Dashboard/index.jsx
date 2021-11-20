@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Redirect } from "react-router";
 import AddButton from "../AddButton";
 import Button from "../Button";

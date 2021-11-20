@@ -1,8 +1,10 @@
+import { Conteiner } from "./styles";
+
 const Input = ({ registers, value, ...rest }) => {
   return (
-    <div>
+    <Conteiner>
       <input {...rest} {...registers(value)} />
-    </div>
+    </Conteiner>
   );
 };
 export default Input;

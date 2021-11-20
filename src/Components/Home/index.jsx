@@ -3,6 +3,7 @@ import { AiFillHome } from "react-icons/ai";
 import { useHistory } from "react-router";
 import { useEffect } from "react";
 import { Redirect } from "react-router";
+import { Conteiner } from "./styles";
 
 const Home = ({ allowed, setAllowed }) => {
   const history = useHistory();
@@ -17,14 +18,14 @@ const Home = ({ allowed, setAllowed }) => {
     return <Redirect to="/dashboard" />;
   }
   return (
-    <div>
+    <Conteiner>
+      <AiFillHome />
       <h1>
         Kenzie <span>Hub</span>
       </h1>
-      <AiFillHome />
-      <Button onclick={() => history.push("/login")}>Login</Button>
-      <Button onclick={() => history.push("/singup")}>Cadastro</Button>
-    </div>
+      <Button onclick={() => history.push("/login")}>LOGIN</Button>
+      <Button onclick={() => history.push("/singup")}>CADASTRO</Button>
+    </Conteiner>
   );
 };
 export default Home;

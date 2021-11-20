@@ -1,9 +1,11 @@
+import { StyleButton } from "./styles";
+
 const Button = ({ type, onclick, children }) => {
   return (
     <>
-      <button type={type} onClick={onclick}>
+      <StyleButton type={type} onClick={onclick}>
         {children}
-      </button>
+      </StyleButton>
     </>
   );
 };
