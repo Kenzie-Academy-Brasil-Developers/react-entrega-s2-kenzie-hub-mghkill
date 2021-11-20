@@ -5,10 +5,10 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Redirect } from "react-router";
+import { Link } from "react-router-dom";
 import api from "../../Services";
 import { toast } from "react-hot-toast";
 import { useEffect } from "react";
-import AddButton from "../AddButton";
 import { Conteiner } from "./styles";
 
 const Login = ({ allowed, setAllowed }) => {
@@ -61,15 +61,28 @@ const Login = ({ allowed, setAllowed }) => {
       <h1>Login</h1>
       <AiFillLock />
       <form onSubmit={handleSubmit(handleRegister)}>
-        <Input registers={register} value="email" placeholder="E-mail" />
+        <label>
+          - <span>{errors.email?.message}</span>
+        </label>
+        <Input
+          registers={register}
+          value="email"
+          error={errors.email?.message}
+          placeholder="E-mail"
+        />
+        <label>
+          - <span>{errors.password?.message}</span>
+        </label>
         <Input
           registers={register}
           value="password"
+          error={errors.password?.message}
           type={"password"}
-          placeholder="E-mail"
+          placeholder="Senha"
         />
         <Button type="submit">Enviar</Button>
       </form>
+      <Link to="/singup">Ainda não tem conta? Cadastre-se</Link>
     </Conteiner>
   );
 };

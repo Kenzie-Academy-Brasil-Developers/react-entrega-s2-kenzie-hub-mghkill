@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Conteiner = styled.div`
   width: 100%;
@@ -6,6 +6,11 @@ export const Conteiner = styled.div`
   margin: 8px auto;
   border-radius: 28px;
   border: solid 1px #e7e7e7;
+  ${(props) =>
+    props.isErrored &&
+    css`
+      border-color: red;
+    `}
   input {
     flex: 1;
     width: 100%;
