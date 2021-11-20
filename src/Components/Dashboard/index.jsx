@@ -1,6 +1,8 @@
 import { Redirect } from "react-router";
+import { AiFillHome } from "react-icons/ai";
 import AddButton from "../AddButton";
 import Button from "../Button";
+import { Card, Conteiner } from "./styles";
 
 const Dashboard = ({ allowed, setAllowed }) => {
   const handleLogout = () => {
@@ -13,7 +15,7 @@ const Dashboard = ({ allowed, setAllowed }) => {
   }
 
   return (
-    <>
+    <Conteiner>
       <header>
         <h1>
           Kenzie <span>Hub</span>
@@ -23,6 +25,7 @@ const Dashboard = ({ allowed, setAllowed }) => {
           alt="perfil_img"
         />
       </header>
+
       <article>
         <section>
           <div>
@@ -40,7 +43,7 @@ const Dashboard = ({ allowed, setAllowed }) => {
             <AddButton route={"/"} />
           </div>
         </section>
-        <section>
+        <aside>
           <div>
             <img
               src="https://voceconstroi.fbitsstatic.net/img/p/perfil-redutor-eucafloor-smart-oak-1-80m-70857/257545.jpg?w=420&h=420&v=no-change&qs=ignore"
@@ -48,22 +51,27 @@ const Dashboard = ({ allowed, setAllowed }) => {
             />
             <h4>Nome de usuário</h4>
           </div>
-          <div>
-            <div>
-              icone de celular
-              <span>Ligar agora</span>
-              <p>+55 (84) 98100-2211</p>
-            </div>
-            <div>
-              icone de celular
-              <span>Enviar email</span>
-              <p>samuel@teste.com.br</p>
-              <Button onclick={handleLogout}>Sair</Button>
-            </div>
-          </div>
-        </section>
+
+          <Card>
+            <span>
+              <AiFillHome />
+
+              <p>
+                <p>Ligar agora -</p> +55 (84) 98100-2211
+              </p>
+            </span>
+            <span>
+              <AiFillHome />
+
+              <p>
+                <p>Enviar email</p> - samuel@teste.com.br
+              </p>
+            </span>
+            <Button onclick={handleLogout}>Sair</Button>
+          </Card>
+        </aside>
       </article>
-    </>
+    </Conteiner>
   );
 };
 export default Dashboard;

@@ -1,13 +1,14 @@
 import { GrAddCircle } from "react-icons/gr";
 import { useHistory } from "react-router";
+import { StyledAddButton } from "./styles";
 
 const AddButton = ({ route }) => {
   const history = useHistory();
   return (
     <>
-      <button onClick={() => history.push(route)}>
+      <StyledAddButton onClick={() => history.push(route)}>
         <GrAddCircle />
-      </button>
+      </StyledAddButton>
     </>
   );
 };

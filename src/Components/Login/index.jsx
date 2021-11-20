@@ -41,7 +41,7 @@ const Login = ({ allowed, setAllowed }) => {
       })
       .catch((err) => {
         console.log(err);
-        toast.error("Digite um usuário ou senha válida!");
+        toast.error("Não foi possível encontrar email ou senha!");
       });
   };
 
