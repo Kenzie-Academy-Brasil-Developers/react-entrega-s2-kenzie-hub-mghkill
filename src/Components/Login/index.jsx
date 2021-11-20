@@ -4,14 +4,13 @@ import Button from "../Button";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Redirect, useHistory } from "react-router";
+import { Redirect } from "react-router";
 import api from "../../Services";
 import { toast } from "react-hot-toast";
 import { useEffect } from "react";
+import AddButton from "../AddButton";
 
 const Login = ({ allowed, setAllowed }) => {
-  const history = useHistory();
-
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -38,7 +37,6 @@ const Login = ({ allowed, setAllowed }) => {
         localStorage.setItem("@ken:user", JSON.stringify(user));
         toast.success(`Bem vindo(a) ${user.name}!`);
         setAllowed(true);
-        history.push("/dashboard");
       })
       .catch((err) => {
         console.log(err);
@@ -63,7 +61,12 @@ const Login = ({ allowed, setAllowed }) => {
       <AiFillLock />
       <form onSubmit={handleSubmit(handleRegister)}>
         <Input registers={register} value="email" placeholder="E-mail" />
-        <Input registers={register} value="password" placeholder="E-mail" />
+        <Input
+          registers={register}
+          value="password"
+          type={"password"}
+          placeholder="E-mail"
+        />
         <Button type="submit">Enviar</Button>
       </form>
     </div>

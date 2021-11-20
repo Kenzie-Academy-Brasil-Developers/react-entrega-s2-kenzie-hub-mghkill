@@ -1,9 +1,18 @@
+import { useEffect } from "react";
 import { Redirect } from "react-router";
+import AddButton from "../AddButton";
+import Button from "../Button";
 
-const Dashboard = ({ allowed }) => {
+const Dashboard = ({ allowed, setAllowed }) => {
+  const handleLogout = () => {
+    localStorage.clear();
+    setAllowed(false);
+  };
+
   if (!allowed) {
     return <Redirect to="/login" />;
   }
+
   return (
     <>
       <header>
@@ -15,15 +24,21 @@ const Dashboard = ({ allowed }) => {
           alt="perfil_img"
         />
       </header>
-      <main>
+      <article>
         <section>
           <div>
             <h3>Minhas Tecnologias</h3>
+            <AddButton route={"/"} />
+            {/* Fazer o modal renderizar apenas 
+            quando um determinado state estiver true
+            
+            */}
           </div>
         </section>
         <section>
           <div>
             <h3>Meus Trabalhos</h3>
+            <AddButton route={"/"} />
           </div>
         </section>
         <section>
@@ -44,10 +59,11 @@ const Dashboard = ({ allowed }) => {
               icone de celular
               <span>Enviar email</span>
               <p>samuel@teste.com.br</p>
+              <Button onclick={handleLogout}>Sair</Button>
             </div>
           </div>
         </section>
-      </main>
+      </article>
     </>
   );
 };
