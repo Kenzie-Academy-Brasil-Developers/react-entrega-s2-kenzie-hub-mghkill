@@ -1,8 +1,8 @@
 import { Redirect } from "react-router";
 import { AiFillHome } from "react-icons/ai";
-import AddButton from "../AddButton";
 import Button from "../Button";
 import { Card, Conteiner } from "./styles";
+import MiddleCards from "../MiddleCards";
 
 const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
   const handleLogout = () => {
@@ -10,6 +10,10 @@ const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
     setBackGround(false);
     setAllowed(false);
   };
+  const handleOnRender = () => {
+    console.log("renderizar");
+  };
+  const valueApi = "teste";
 
   if (!allowed) {
     return <Redirect to="/login" />;
@@ -18,9 +22,9 @@ const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
   return (
     <Conteiner>
       <header>
-        <h1>
-          Kenzie <span>Hub</span>
-        </h1>
+        <h2>
+          Kenzie <span>Hub </span>
+        </h2>
         <img
           src="https://voceconstroi.fbitsstatic.net/img/p/perfil-redutor-eucafloor-smart-oak-1-80m-70857/257545.jpg?w=420&h=420&v=no-change&qs=ignore"
           alt="perfil_img"
@@ -28,22 +32,18 @@ const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
       </header>
 
       <article>
-        <section>
-          <div>
-            <h3>Minhas Tecnologias</h3>
-            <AddButton route={"/"} />
-            {/* Fazer o modal renderizar apenas 
-            quando um determinado state estiver true
-            
-            */}
-          </div>
-        </section>
-        <section>
-          <div>
-            <h3>Meus Trabalhos</h3>
-            <AddButton route={"/"} />
-          </div>
-        </section>
+        <MiddleCards
+          tytle={"Minhas Tecnologias"}
+          handleOnRender={handleOnRender}
+          valueApi={valueApi}
+        />
+
+        <MiddleCards
+          tytle={"Meus Trabalhos"}
+          handleOnRender={handleOnRender}
+          valueApi={valueApi}
+        />
+
         <aside>
           <div>
             <img
