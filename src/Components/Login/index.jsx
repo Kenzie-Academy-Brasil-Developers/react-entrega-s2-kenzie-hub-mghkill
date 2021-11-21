@@ -11,7 +11,7 @@ import { toast } from "react-hot-toast";
 import { useEffect } from "react";
 import { Conteiner } from "./styles";
 
-const Login = ({ allowed, setAllowed }) => {
+const Login = ({ allowed, setAllowed, setBackGround }) => {
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -38,6 +38,7 @@ const Login = ({ allowed, setAllowed }) => {
         localStorage.setItem("@ken:user", JSON.stringify(user));
         toast.success(`Bem vindo(a) ${user.name}!`);
         setAllowed(true);
+        setBackGround(true);
       })
       .catch((err) => {
         console.log(err);

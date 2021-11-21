@@ -24,11 +24,5 @@ export const Conteiner = styled.div`
       border: 0 none;
       outline: 0;
     }
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    input:-webkit-autofill:active {
-      -webkit-box-shadow: 0 0 0 30px #e7e7e7 inset !important;
-    }
   }
 `;

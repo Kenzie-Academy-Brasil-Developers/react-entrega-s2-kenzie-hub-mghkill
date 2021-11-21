@@ -5,7 +5,7 @@ import Login from "../Components/Login";
 import SingUp from "../Components/Singup";
 import { useState } from "react";
 
-const Routes = () => {
+const Routes = ({ setBackGround }) => {
   const [allowed, setAllowed] = useState(false);
 
   return (
@@ -14,13 +14,21 @@ const Routes = () => {
         <Home allowed={allowed} setAllowed={setAllowed} />
       </Route>
       <Route exact path="/login">
-        <Login allowed={allowed} setAllowed={setAllowed} />
+        <Login
+          allowed={allowed}
+          setAllowed={setAllowed}
+          setBackGround={setBackGround}
+        />
       </Route>
       <Route exact path="/singup">
         <SingUp allowed={allowed} setAllowed={setAllowed} />
       </Route>
       <Route exact path="/dashboard">
-        <Dashboard allowed={allowed} setAllowed={setAllowed} />
+        <Dashboard
+          allowed={allowed}
+          setAllowed={setAllowed}
+          setBackGround={setBackGround}
+        />
       </Route>
     </Switch>
   );

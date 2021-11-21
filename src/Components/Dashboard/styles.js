@@ -6,7 +6,8 @@ export const Conteiner = styled.div`
     justify-content: space-around;
     align-items: center;
     padding: 12px;
-    margin: 18px 12px;
+    margin: 18px auto;
+    max-width: 1100px;
     border-radius: 12px;
     background-color: white;
     img {
@@ -22,7 +23,8 @@ export const Conteiner = styled.div`
     align-items: center;
     padding: 12px;
     border-radius: 12px;
-    background-color: white;
+    max-width: 1100px;
+
     section {
       width: 90%;
       div {
@@ -73,7 +75,7 @@ export const Conteiner = styled.div`
       flex-direction: row;
       justify-content: space-around;
       align-items: flex-start;
-      margin: 18px 12px;
+      margin: 18px auto;
     }
   }
 `;

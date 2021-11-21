@@ -4,9 +4,10 @@ import AddButton from "../AddButton";
 import Button from "../Button";
 import { Card, Conteiner } from "./styles";
 
-const Dashboard = ({ allowed, setAllowed }) => {
+const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
   const handleLogout = () => {
     localStorage.clear();
+    setBackGround(false);
     setAllowed(false);
   };
 
