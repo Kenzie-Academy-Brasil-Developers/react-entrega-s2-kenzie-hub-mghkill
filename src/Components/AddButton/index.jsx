@@ -1,11 +1,13 @@
-import { GrAddCircle } from "react-icons/gr";
+import { IoMdAddCircle } from "react-icons/io";
 import { StyledAddButton } from "./styles";
 
-const AddButton = ({ onclick }) => {
+const AddButton = ({ onclick, techs }) => {
   return (
     <>
-      <StyledAddButton onClick={onclick}>
-        <GrAddCircle />
+      <StyledAddButton techs={!!techs} onClick={() => onclick(techs)}>
+        <p>
+          <IoMdAddCircle />
+        </p>
       </StyledAddButton>
     </>
   );

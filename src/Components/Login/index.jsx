@@ -32,7 +32,6 @@ const Login = ({ allowed, setAllowed, setBackGround }) => {
     api
       .post("/sessions", data)
       .then((response) => {
-        console.log("ok");
         const { token, user } = response.data;
         localStorage.setItem("@ken:token", JSON.stringify(token));
         localStorage.setItem("@ken:user", JSON.stringify(user));

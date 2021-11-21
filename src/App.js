@@ -7,7 +7,6 @@ const App = () => {
   const [backGround, setBackGround] = useState(false);
   useEffect(() => {
     const user = localStorage.getItem("@ken:user");
-    console.log(user);
     if (user) {
       return setBackGround(true);
     }

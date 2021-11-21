@@ -6,8 +6,9 @@ export const StyledMiddleCard = styled.div`
   padding: 12px;
   border-radius: 12px;
   margin-top: 1rem;
+  min-height: 36.5vh;
+
   div {
-    min-height: 34vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Conteiner = styled.div`
   header {
@@ -86,29 +86,37 @@ export const Card = styled.span`
   background-color: white;
   display: flex;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   padding: 12px;
   width: 100%;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-
-  svg {
-    font-size: 60px;
-    margin-right: 12px;
-  }
-  span {
+  p {
+    font-size: small;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: x-small;
-    width: 100%;
-    height: 60px;
-    margin: 12px auto;
-    padding: 12px;
-    background-color: grey;
-    p {
-      color: white;
-    }
+    margin-bottom: 6px;
+    padding: 8px;
+    background-color: #edeaf7;
+    color: #5e5e5e;
+    border-radius: 8px;
   }
+  svg {
+    font-size: 60px;
+    margin-right: 12px;
+    background-color: #5500ab;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  ${(props) =>
+    props.green &&
+    css`
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+
+      svg {
+        background-color: #00a75d;
+      }
+    `}
 `;
