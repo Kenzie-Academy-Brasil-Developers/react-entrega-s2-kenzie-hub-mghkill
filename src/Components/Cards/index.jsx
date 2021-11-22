@@ -2,7 +2,7 @@ import { StyledCard, StyleTools } from "./styles";
 import { DiGitBranch } from "react-icons/di";
 import { GiCircleCage } from "react-icons/gi";
 
-const Cards = ({ techs, item, handleFilter }) => {
+const Cards = ({ techs, item, handleModalFilter }) => {
   return (
     <StyledCard techs={!!techs}>
       {techs ? (
@@ -14,9 +14,7 @@ const Cards = ({ techs, item, handleFilter }) => {
             <h2>{item.title}</h2>
             <h5>{item.status}</h5>
           </span>
-          <button onClick={() => handleFilter(item.id, "techs")}>
-            REMOVER
-          </button>
+          <button onClick={() => handleModalFilter(item, "techs")}></button>
         </>
       ) : (
         <>
@@ -27,9 +25,7 @@ const Cards = ({ techs, item, handleFilter }) => {
             <h2>{item.title}</h2>
             <h5>{item.description}</h5>
           </span>
-          <button onClick={() => handleFilter(item.id, "works")}>
-            REMOVER
-          </button>
+          <button onClick={() => handleModalFilter(item, "works")}></button>
         </>
       )}
     </StyledCard>

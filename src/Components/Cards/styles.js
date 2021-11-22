@@ -45,41 +45,16 @@ export const StyledCard = styled.section`
     position: absolute;
     cursor: pointer;
     border: none;
-    padding: 4px;
-    border-radius: 4px;
     background-color: transparent;
-    color: white;
     width: 100%;
     height: 100%;
-    :hover {
-      background-color: #e3f7ef;
-      color: #00a75d;
-      font-size: x-large;
-      transition: 0.5s;
-    }
   }
   ${(props) =>
     !props.techs &&
     css`
       cursor: pointer;
       border-color: #edeaf7;
-      button {
-        position: absolute;
-        cursor: pointer;
-        border: none;
-        padding: 4px;
-        border-radius: 4px;
-        background-color: transparent;
-        color: white;
-        width: 100%;
-        height: 100%;
-        :hover {
-          background-color: #edeaf7;
-          color: #5500ab;
-          font-size: x-large;
-          transition: 0.5s;
-        }
-      }
+
       section {
         background-color: #edeaf7;
         svg {

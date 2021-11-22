@@ -13,6 +13,10 @@ const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
   const [techsModal, setTechsModal] = useState(false);
   const [worksModal, setWorksModal] = useState(false);
   const [open, setOpen] = useState(false);
+  const [remove, setRemove] = useState(false);
+  const [idRemove, setIdRemove] = useState("");
+  const [itemRemove, setItemRemove] = useState({});
+  const [endPointRemove, setEndPointRemove] = useState("");
   const [storage] = useState(
     JSON.parse(localStorage.getItem("@ken:user")) || ""
   );
@@ -85,6 +89,26 @@ const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
     setTechsModal(false);
     setWorksModal(false);
   };
+  const handleModalFilter = (item, endPoint) => {
+    setRemove(true);
+    setIdRemove(item.id);
+    setItemRemove(item);
+    setEndPointRemove(endPoint);
+    setOpen(true);
+  };
+  const handleFilter = () => {
+    api
+      .delete(`users/${endPointRemove}/${idRemove}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        toast.success(`Informações removidas`);
+        api
+          .get(`/users/${storage.id}`)
+          .then((response) => setGetUserItem(response.data));
+        setRemove(false);
+      });
+  };
 
   useEffect(() => {
     api
@@ -95,6 +119,7 @@ const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
   if (!allowed) {
     return <Redirect to="/login" />;
   }
+  console.log(remove);
   return (
     <>
       {techsModal && (
@@ -117,6 +142,18 @@ const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
           labelThree={"Url_Deploy ex: https://kenziehub.me"}
         />
       )}
+      {remove && (
+        <ConteinerModal
+          open={open}
+          setOpen={setOpen}
+          labelOne={"Trabalhos"}
+          labelTwo={"Status"}
+          remove={remove}
+          setRemove={setRemove}
+          handleFilter={handleFilter}
+          itemRemove={itemRemove}
+        />
+      )}
 
       <Conteiner>
         <header>
@@ -135,17 +172,13 @@ const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
             handleOnRender={handleOnRender}
             getUserItem={getUserItem.techs}
             techs
-            token={token}
-            setGetUserItem={setGetUserItem}
-            storage={storage}
+            handleModalFilter={handleModalFilter}
           />
           <MiddleCards
             tytle={"Meus Trabalhos"}
             handleOnRender={handleOnRender}
             getUserItem={getUserItem.works}
-            token={token}
-            setGetUserItem={setGetUserItem}
-            storage={storage}
+            handleModalFilter={handleModalFilter}
           />
           <aside>
             <div>

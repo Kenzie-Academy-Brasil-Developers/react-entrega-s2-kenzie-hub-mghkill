@@ -1,5 +1,3 @@
-import toast from "react-hot-toast";
-import api from "../../Services";
 import AddButton from "../AddButton";
 import Cards from "../Cards";
 import { StyledMiddleCard } from "./styles";
@@ -9,22 +7,8 @@ const MiddleCards = ({
   handleOnRender,
   getUserItem,
   techs,
-  token,
-  setGetUserItem,
-  storage,
+  handleModalFilter,
 }) => {
-  const handleFilter = (id, endPoint) => {
-    api
-      .delete(`users/${endPoint}/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        toast.success(`Informações removidas`);
-        api
-          .get(`/users/${storage.id}`)
-          .then((response) => setGetUserItem(response.data));
-      });
-  };
   return (
     <StyledMiddleCard>
       <div>
@@ -37,7 +21,7 @@ const MiddleCards = ({
             key={index}
             techs={techs}
             item={item}
-            handleFilter={handleFilter}
+            handleModalFilter={handleModalFilter}
           />
         ))}
     </StyledMiddleCard>

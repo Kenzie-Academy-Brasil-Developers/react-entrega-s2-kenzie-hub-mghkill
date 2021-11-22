@@ -15,6 +15,14 @@ const divBox = {
   display: "flex",
   flexDirection: "column",
 };
+const divBoxRemove = {
+  width: "100%",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  lineHeight: "2",
+};
 const ConteinerModal = ({
   open,
   setOpen,
@@ -23,6 +31,10 @@ const ConteinerModal = ({
   labelTwo,
   labelThree,
   techsModal,
+  remove,
+  setRemove,
+  handleFilter,
+  itemRemove,
 }) => {
   const [commit, setCommit] = useState("");
   const [inputValue, setInputValue] = useState("");
@@ -30,99 +42,137 @@ const ConteinerModal = ({
 
   return (
     <>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleAddItem}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <Box sx={style}>
-            <Box sx={divBox}>
-              <Box
-                sx={{
-                  width: "100%",
-                }}
-              >
-                <TextField
-                  fullWidth
-                  label={labelOne}
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                />
-              </Box>
-              {techsModal ? (
-                <>
-                  <FormControl sx={{ mt: 1, minWidth: "50%" }}>
-                    <InputLabel id="demo-simple-select-autowidth-label">
-                      {labelTwo}
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-autowidth-label"
-                      id="demo-simple-select-autowidth"
-                      value={commit}
-                      onChange={(e) => setCommit(e.target.value)}
-                      autoWidth
-                      label="Módulo"
+      {!remove ? (
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={open}
+          onClose={handleAddItem}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={open}>
+            <Box sx={style}>
+              <Box sx={divBox}>
+                <Box
+                  sx={{
+                    width: "100%",
+                  }}
+                >
+                  <TextField
+                    fullWidth
+                    label={labelOne}
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                  />
+                </Box>
+                {techsModal ? (
+                  <>
+                    <FormControl sx={{ mt: 1, minWidth: "50%" }}>
+                      <InputLabel id="demo-simple-select-autowidth-label">
+                        {labelTwo}
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-autowidth-label"
+                        id="demo-simple-select-autowidth"
+                        value={commit}
+                        onChange={(e) => setCommit(e.target.value)}
+                        autoWidth
+                        label="Módulo"
+                      >
+                        <MenuItem value="Iniciante">Iniciante</MenuItem>
+                        <MenuItem value="Intermediario">Intermediário</MenuItem>
+                        <MenuItem value="Avancado">Avançado</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </>
+                ) : (
+                  <>
+                    <Box
+                      sx={{
+                        width: 500,
+                        maxWidth: "100%",
+                        mt: "12px",
+                      }}
                     >
-                      <MenuItem value="Iniciante">Iniciante</MenuItem>
-                      <MenuItem value="Intermediario">Intermediário</MenuItem>
-                      <MenuItem value="Avancado">Avançado</MenuItem>
-                    </Select>
-                  </FormControl>
-                </>
-              ) : (
-                <>
-                  <Box
-                    sx={{
-                      width: 500,
-                      maxWidth: "100%",
-                      mt: "12px",
+                      <TextField
+                        fullWidth
+                        label={labelTwo}
+                        value={commit}
+                        onChange={(e) => setCommit(e.target.value)}
+                      />
+                    </Box>
+                    <Box
+                      sx={{
+                        width: 500,
+                        maxWidth: "100%",
+                        mt: "12px",
+                      }}
+                    >
+                      <TextField
+                        fullWidth
+                        label={labelThree}
+                        value={deploy}
+                        onChange={(e) => setDeploy(e.target.value)}
+                      />
+                    </Box>
+                  </>
+                )}
+              </Box>
+              <Box sx={divBox}>
+                <Button
+                  onclick={() => {
+                    handleAddItem(inputValue, commit, deploy);
+                    setInputValue("");
+                    setCommit("");
+                  }}
+                >
+                  Adicionar
+                </Button>
+              </Box>
+            </Box>
+          </Fade>
+        </Modal>
+      ) : (
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={open}
+          onClose={() => {
+            setOpen(false);
+            setRemove(false);
+          }}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={open}>
+            <Box sx={style}>
+              <Box sx={divBoxRemove}>
+                <h1>{itemRemove.title}</h1>
+
+                {itemRemove.status ? itemRemove.status : itemRemove.description}
+
+                <Box sx={divBox}>
+                  <Button
+                    onclick={() => {
+                      handleFilter();
+                      setOpen(false);
                     }}
                   >
-                    <TextField
-                      fullWidth
-                      label={labelTwo}
-                      value={commit}
-                      onChange={(e) => setCommit(e.target.value)}
-                    />
-                  </Box>
-                  <Box
-                    sx={{
-                      width: 500,
-                      maxWidth: "100%",
-                      mt: "12px",
-                    }}
-                  >
-                    <TextField
-                      fullWidth
-                      label={labelThree}
-                      value={deploy}
-                      onChange={(e) => setDeploy(e.target.value)}
-                    />
-                  </Box>
-                </>
-              )}
+                    Excluir
+                  </Button>
+                </Box>
+              </Box>
             </Box>
-            <Box sx={divBox}>
-              <Button
-                onclick={() => {
-                  handleAddItem(inputValue, commit, deploy);
-                  setInputValue("");
-                  setCommit("");
-                }}
-              >
-                Adicionar
-              </Button>
-            </Box>
-          </Box>
-        </Fade>
-      </Modal>
+          </Fade>
+        </Modal>
+      )}
     </>
   );
 };
