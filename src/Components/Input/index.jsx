@@ -1,6 +1,6 @@
 import { Conteiner } from "./styles";
 
-const Input = ({ registers, value, error, ...rest }) => {
+const Input = ({ registers = "", inputValue, value = "", error, ...rest }) => {
   return (
     <Conteiner isErrored={!!error}>
       <input {...rest} {...registers(value)} />

@@ -6,15 +6,21 @@ import { Card, Conteiner } from "./styles";
 import MiddleCards from "../MiddleCards";
 import { useEffect, useState } from "react";
 import api from "../../Services";
+import ConteinerModal from "../Modal";
 
 const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
   const [techsModal, setTechsModal] = useState(false);
   const [worksModal, setWorksModal] = useState(false);
-  const [id] = useState(JSON.parse(localStorage.getItem("@ken:user")).id || "");
+  const [open, setOpen] = useState(false);
+  const [storage] = useState(
+    JSON.parse(localStorage.getItem("@ken:user")) || ""
+  );
   const [getUserItem, setGetUserItem] = useState({});
 
   useEffect(() => {
-    api.get(`/users/${id}`).then((response) => setGetUserItem(response.data));
+    api
+      .get(`/users/${storage.id}`)
+      .then((response) => setGetUserItem(response.data));
   }, []);
 
   const handleLogout = () => {
@@ -25,19 +31,60 @@ const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
   const handleOnRender = (techs) => {
     if (techs) {
       setTechsModal(true);
+      setOpen(true);
     } else {
       setWorksModal(true);
+      setOpen(true);
     }
   };
-  const handleAddItem = () => {};
+
+  const handleAddTechs = (value1, value2) => {
+    const objResponse = {
+      title: value1,
+      status: value2,
+    };
+    console.log(objResponse);
+    setOpen(false);
+    setTechsModal(false);
+    setWorksModal(false);
+  };
+  const handleAddWorks = (value1, value2, value3) => {
+    const objResponse = {
+      title: value1,
+      description: value2,
+      deploy_url: value3,
+    };
+    console.log(objResponse);
+    setOpen(false);
+    setTechsModal(false);
+    setWorksModal(false);
+  };
 
   if (!allowed) {
     return <Redirect to="/login" />;
   }
   return (
     <>
-      {techsModal && <div>modal techs</div>}
-      {worksModal && <div>modal works</div>}
+      {techsModal && (
+        <ConteinerModal
+          open={open}
+          setOpen={setOpen}
+          handleAddItem={handleAddTechs}
+          labelOne={"Tecnologia"}
+          labelTwo={"Status"}
+          techsModal={techsModal}
+        />
+      )}
+      {worksModal && (
+        <ConteinerModal
+          open={open}
+          setOpen={setOpen}
+          handleAddItem={handleAddWorks}
+          labelOne={"Trabalhos"}
+          labelTwo={"Descrição"}
+          labelThree={"Url_Deploy ex: https://kenziehub.me"}
+        />
+      )}
 
       <Conteiner>
         <header>
@@ -68,7 +115,11 @@ const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
                 src="https://voceconstroi.fbitsstatic.net/img/p/perfil-redutor-eucafloor-smart-oak-1-80m-70857/257545.jpg?w=420&h=420&v=no-change&qs=ignore"
                 alt="img_perfil"
               />
-              <h4>Nome de usuário</h4>
+              <div>
+                <h3>{storage.name}</h3>
+                <p>{storage.bio}</p>
+                <span>{storage.course_module}</span>
+              </div>
             </div>
 
             <Card>

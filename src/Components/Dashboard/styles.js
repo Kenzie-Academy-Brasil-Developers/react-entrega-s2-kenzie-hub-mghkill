@@ -53,6 +53,20 @@ export const Conteiner = styled.div`
         border-top-right-radius: 8px;
         background-color: #5500ab;
         color: white;
+        div {
+          display: block;
+          p {
+            font-weight: 500;
+            padding: 2px;
+            font-size: small;
+          }
+          span {
+            font-weight: 200;
+            font-size: x-small;
+            color: #d2d2d2;
+            padding: 2px;
+          }
+        }
 
         img {
           width: 80px;

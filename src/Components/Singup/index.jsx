@@ -127,7 +127,7 @@ const SingUp = ({ allowed, setAllowed }) => {
           registers={register}
           value="bio"
           error={errors.bio?.message}
-          placeholder="Sobre você em 3 palavras"
+          placeholder="Módulo"
         />
         <label>
           - <span>{errors.contact?.message}</span>
@@ -145,7 +145,7 @@ const SingUp = ({ allowed, setAllowed }) => {
           registers={register}
           value="course_module"
           error={errors.course_module?.message}
-          placeholder="M curso ex: Front Avançado"
+          placeholder="Curso ex: (Front Avançado)"
         />
         <Button type="submit">Cadastrar</Button>
       </form>
