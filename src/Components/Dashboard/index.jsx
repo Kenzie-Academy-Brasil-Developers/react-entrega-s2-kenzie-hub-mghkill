@@ -161,7 +161,7 @@ const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
             Kenzie <span>Hub </span>
           </h2>
           <img
-            src="https://voceconstroi.fbitsstatic.net/img/p/perfil-redutor-eucafloor-smart-oak-1-80m-70857/257545.jpg?w=420&h=420&v=no-change&qs=ignore"
+            src="https://i2.wp.com/www.fatosdesconhecidos.com.br/wp-content/uploads/2020/01/images.png?resize=600%2C377&ssl=1"
             alt="perfil_img"
           />
         </header>
@@ -183,7 +183,7 @@ const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
           <aside>
             <div>
               <img
-                src="https://voceconstroi.fbitsstatic.net/img/p/perfil-redutor-eucafloor-smart-oak-1-80m-70857/257545.jpg?w=420&h=420&v=no-change&qs=ignore"
+                src="https://i2.wp.com/www.fatosdesconhecidos.com.br/wp-content/uploads/2020/01/images.png?resize=600%2C377&ssl=1"
                 alt="img_perfil"
               />
               <div>

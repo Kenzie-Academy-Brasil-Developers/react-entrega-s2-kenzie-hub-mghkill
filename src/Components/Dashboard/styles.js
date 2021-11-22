@@ -22,6 +22,7 @@ export const Conteiner = styled.div`
     }
     img {
       width: 80px;
+      height: 65px;
       border-radius: 50%;
     }
   }
@@ -76,9 +77,11 @@ export const Conteiner = styled.div`
         }
 
         img {
-          width: 30%;
+          width: 50px;
+          height: 40px;
           margin: 4px;
-          border-radius: 50%;
+          margin-right: 12px;
+          border-radius: 100%;
         }
         h4 {
           color: white;
