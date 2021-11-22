@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const Conteiner = styled.div`
   header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 12px;
     margin: 18px auto;
@@ -48,17 +48,24 @@ export const Conteiner = styled.div`
         justify-content: space-around;
         align-items: center;
         width: 100%;
-        padding: 12px 24px;
+        padding: 12px 8px;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         background-color: #5500ab;
         color: white;
         div {
+          padding: 0;
           display: block;
+          h3 {
+            display: block;
+            font-size: small;
+            padding: 2px;
+          }
           p {
             font-weight: 500;
             padding: 2px;
             font-size: small;
+            padding: 2px;
           }
           span {
             font-weight: 200;
@@ -69,7 +76,8 @@ export const Conteiner = styled.div`
         }
 
         img {
-          width: 80px;
+          width: 30%;
+          margin: 4px;
           border-radius: 50%;
         }
         h4 {

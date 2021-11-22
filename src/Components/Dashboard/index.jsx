@@ -7,6 +7,7 @@ import MiddleCards from "../MiddleCards";
 import { useEffect, useState } from "react";
 import api from "../../Services";
 import ConteinerModal from "../Modal";
+import { toast } from "react-hot-toast";
 
 const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
   const [techsModal, setTechsModal] = useState(false);
@@ -15,13 +16,11 @@ const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
   const [storage] = useState(
     JSON.parse(localStorage.getItem("@ken:user")) || ""
   );
-  const [getUserItem, setGetUserItem] = useState({});
+  const [token] = useState(
+    JSON.parse(localStorage.getItem("@ken:token")) || ""
+  );
 
-  useEffect(() => {
-    api
-      .get(`/users/${storage.id}`)
-      .then((response) => setGetUserItem(response.data));
-  }, []);
+  const [getUserItem, setGetUserItem] = useState({});
 
   const handleLogout = () => {
     localStorage.clear();
@@ -43,22 +42,55 @@ const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
       title: value1,
       status: value2,
     };
-    console.log(objResponse);
+    api
+      .post("users/techs", objResponse, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        toast.success(`Informações adicionadas`);
+        api
+          .get(`/users/${storage.id}`)
+          .then((response) => setGetUserItem(response.data));
+      })
+      .catch((err) => {
+        toast.error(`Ocorreu um erro, tente novamente!`);
+      });
+
     setOpen(false);
     setTechsModal(false);
     setWorksModal(false);
   };
+
   const handleAddWorks = (value1, value2, value3) => {
     const objResponse = {
       title: value1,
       description: value2,
       deploy_url: value3,
     };
-    console.log(objResponse);
+    api
+      .post("users/works", objResponse, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        toast.success(`Informações adicionadas`);
+        api
+          .get(`/users/${storage.id}`)
+          .then((response) => setGetUserItem(response.data));
+      })
+      .catch((err) => {
+        toast.error(`Ocorreu um erro, tente novamente!`);
+      });
+
     setOpen(false);
     setTechsModal(false);
     setWorksModal(false);
   };
+
+  useEffect(() => {
+    api
+      .get(`/users/${storage.id}`)
+      .then((response) => setGetUserItem(response.data));
+  }, [open]);
 
   if (!allowed) {
     return <Redirect to="/login" />;
@@ -103,11 +135,17 @@ const Dashboard = ({ allowed, setAllowed, setBackGround }) => {
             handleOnRender={handleOnRender}
             getUserItem={getUserItem.techs}
             techs
+            token={token}
+            setGetUserItem={setGetUserItem}
+            storage={storage}
           />
           <MiddleCards
             tytle={"Meus Trabalhos"}
             handleOnRender={handleOnRender}
             getUserItem={getUserItem.works}
+            token={token}
+            setGetUserItem={setGetUserItem}
+            storage={storage}
           />
           <aside>
             <div>

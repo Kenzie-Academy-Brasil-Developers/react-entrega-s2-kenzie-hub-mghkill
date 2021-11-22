@@ -1,33 +1,18 @@
-import { styled } from "@mui/system";
-import ModalUnstyled from "@mui/core/ModalUnstyled";
-export const StyledModal = styled(ModalUnstyled)`
-  position: fixed;
-  z-index: 1300;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const Backdrop = styled("div")`
-  z-index: -1;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  -webkit-tap-highlight-color: transparent;
-`;
-
-export const style = {
-  width: 400,
+const style = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  flexDirection: "column",
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "80vw",
+  maxWidth: "900px",
   bgcolor: "background.paper",
-  border: "2px solid #000",
-  p: 2,
-  px: 4,
-  pb: 3,
+  border: "2px solid #5500ab",
+  borderRadius: "12px",
+  boxShadow: 24,
+  p: 4,
 };
+export default style;

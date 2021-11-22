@@ -6,7 +6,7 @@ export const StyledCard = styled.section`
   height: 76px;
   border-right: solid 4px #e3f7ef;
   margin: 1rem auto;
-
+  position: relative;
   span {
     display: flex;
     flex-direction: column;
@@ -17,7 +17,6 @@ export const StyledCard = styled.section`
     h2 {
       padding: 4px;
       padding-left: 0;
-      width: 50%;
     }
     h5 {
       display: flex;
@@ -42,11 +41,45 @@ export const StyledCard = styled.section`
       }
     }
   }
+  button {
+    position: absolute;
+    cursor: pointer;
+    border: none;
+    padding: 4px;
+    border-radius: 4px;
+    background-color: transparent;
+    color: white;
+    width: 100%;
+    height: 100%;
+    :hover {
+      background-color: #e3f7ef;
+      color: #00a75d;
+      font-size: x-large;
+      transition: 0.5s;
+    }
+  }
   ${(props) =>
     !props.techs &&
     css`
       cursor: pointer;
       border-color: #edeaf7;
+      button {
+        position: absolute;
+        cursor: pointer;
+        border: none;
+        padding: 4px;
+        border-radius: 4px;
+        background-color: transparent;
+        color: white;
+        width: 100%;
+        height: 100%;
+        :hover {
+          background-color: #edeaf7;
+          color: #5500ab;
+          font-size: x-large;
+          transition: 0.5s;
+        }
+      }
       section {
         background-color: #edeaf7;
         svg {
